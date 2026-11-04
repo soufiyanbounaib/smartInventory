@@ -15,15 +15,18 @@
      <lightning-card title="List Inventory Item">
      <div>
      <template lwc:if={inventoryItems}>
-      <template for:each={inventoryItems} for:item="item" >
-        <p key={item.SKU__c}>
-         {item.Name} - {item.SKU__c} - {item.Category__c} - {item.Unit_Cost__c} 
-        </p>
-      </template>
+      <lightning-datatable 
+        key-field="Id"
+        data={inventoryItems}
+        columns={colums}
+        draft-values={draftValues}
+        onsave={handleSave}
+        hide-checkbox-column>
+      </lightning-datatable>
      </template>
       <template lwc:if={error}>
          <p class="slds-text-color_error">
-                     Error: {errorMessage}
+             Error: {errorMessage}
         </p>
       </template>
      </div>
