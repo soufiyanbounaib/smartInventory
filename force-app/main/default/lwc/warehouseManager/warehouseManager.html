@@ -1,0 +1,33 @@
+<template>
+     <lightning-card title="Create Warehouse">
+      <div class="slds-m-bottom_small">
+        <lightning-record-edit-form object-api-name="Warehouse__c"  onsuccess={handleSuccess} onerror={handleError} >
+          <lightning-messages></lightning-messages>
+          <lightning-input-field field-name="Name"></lightning-input-field>
+          <lightning-input-field field-name="Location__c"></lightning-input-field>
+          <lightning-input-field field-name="Active__c"></lightning-input-field>
+          <lightning-button class="slds-m-top_small" type="submit" label="Save"></lightning-button>
+        </lightning-record-edit-form>
+      </div>
+     </lightning-card> 
+     <lightning-card title="List Warehouses">
+     <div>
+     <template lwc:if={warehouses}>
+      <lightning-datatable 
+        key-field="Id"
+        data={warehouses}
+        columns={colums}
+        draft-values={draftValues}
+        onsave={handleSave}
+        onrowaction={handleRowAction}
+        hide-checkbox-column>
+      </lightning-datatable>
+     </template>
+      <template lwc:if={error}>
+         <p class="slds-text-color_error">
+             Error: {errorMessage}
+        </p>
+      </template>
+     </div>
+     </lightning-card> 
+</template>

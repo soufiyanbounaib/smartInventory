@@ -7,7 +7,7 @@ public with sharing class InventoryService {
     public static List<Inventory_Item__c> LoadInventoryItem()
     {
        List<Inventory_Item__c> inventoryItems=[
-         SELECT Name,SKU__c,Category__c, Unit_Cost__c
+         SELECT Id,Name,SKU__c,Category__c, Unit_Cost__c,Active__c
          FROM  Inventory_Item__c
         ];
        return inventoryItems;
