@@ -1,0 +1,115 @@
+<template>
+    <lightning-card title="Allocation Request Manager"
+                    icon-name="standard:orders">
+
+        <div class="slds-p-around_medium">
+
+            <!-- Create Allocation Request -->
+            <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                Create Allocation Request
+            </h2>
+
+            <lightning-record-edit-form
+                object-api-name="Allocation_Request__c"
+                onsuccess={handleRequestSuccess}
+                onerror={handleError}>
+
+                <lightning-messages></lightning-messages>
+
+                <lightning-input-field
+                    field-name="Requesting_Team__c">
+                </lightning-input-field>
+
+                <lightning-input-field
+                    field-name="Priority__c">
+                </lightning-input-field>
+
+                <lightning-button
+                    type="submit"
+                    label="Create Request"
+                    variant="brand"
+                    class="slds-m-top_medium">
+                </lightning-button>
+
+            </lightning-record-edit-form>
+
+            <div class="slds-border_bottom slds-m-vertical_large"></div>
+
+            <!-- Allocation Requests Table -->
+            <h2 class="slds-text-heading_medium slds-m-vertical_medium">
+                Allocation Requests
+            </h2>
+
+            <lightning-datatable
+                key-field="Id"
+                data={requests}
+                columns={requestColumns}
+                draft-values={requestDraftValues}
+                onsave={handleRequestSave}
+                onrowaction={handleRequestRowAction}
+                hide-checkbox-column>
+            </lightning-datatable>
+
+            <!-- Selected Request -->
+            <template if:true={selectedRequestId}>
+
+                <div class="slds-border_bottom slds-m-vertical_large"></div>
+
+                <h2 class="slds-text-heading_medium slds-m-vertical_medium">
+                    Allocation Lines
+                </h2>
+
+                <p class="slds-m-bottom_medium">
+                    Selected Request: {selectedRequestName}
+                </p>
+
+                <!-- Create Allocation Line -->
+                <lightning-record-edit-form
+                    object-api-name="Allocation_Line__c"
+                    onsubmit={handleLineSubmit}
+                    onsuccess={handleLineSuccess}
+                    onerror={handleError}>
+
+                    <lightning-messages></lightning-messages>
+
+                    <lightning-input-field
+                        field-name="Inventory_Item__c">
+                    </lightning-input-field>
+
+                    <lightning-input-field
+                        field-name="Quantity_Requested__c">
+                    </lightning-input-field>
+
+                    <lightning-input-field
+                        field-name="Quantity_Approved__c">
+                    </lightning-input-field>
+
+                    <lightning-button
+                        type="submit"
+                        label="Add Line"
+                        variant="brand"
+                        class="slds-m-top_medium">
+                    </lightning-button>
+
+                </lightning-record-edit-form>
+
+                <!-- Allocation Lines Table -->
+                <h3 class="slds-text-heading_small slds-m-vertical_medium">
+                    Existing Lines
+                </h3>
+
+                <lightning-datatable
+                    key-field="Id"
+                    data={allocationLines}
+                    columns={lineColumns}
+                    draft-values={lineDraftValues}
+                    onsave={handleLineSave}
+                    onrowaction={handleLineRowAction}
+                    hide-checkbox-column>
+                </lightning-datatable>
+
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
