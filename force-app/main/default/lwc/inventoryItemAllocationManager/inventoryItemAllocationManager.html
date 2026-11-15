@@ -1,0 +1,71 @@
+
+<template>
+    <lightning-card
+        title="Inventory Allocation Manager"
+        icon-name="standard:product">
+
+        <div class="slds-p-around_medium">
+
+            <!-- Allocation Requests -->
+            <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                Submitted Allocation Requests
+            </h2>
+
+            <lightning-datatable
+                key-field="Id"
+                data={requests}
+                columns={requestColumns}
+                onrowaction={handleRequestRowAction}
+                hide-checkbox-column>
+            </lightning-datatable>
+
+            <div class="slds-border_bottom slds-m-vertical_large"></div>
+
+            <!-- Selected Request -->
+            <template if:true={selectedRequestId}>
+
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                    Selected Request: {selectedRequestName}
+                </h2>
+
+                <!-- Allocation Lines -->
+                <lightning-datatable
+                    key-field="Id"
+                    data={allocationLines}
+                    columns={lineColumns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+
+                <!-- Execute Allocation -->
+                <div class="slds-m-top_large">
+
+                    <lightning-button
+                        label="Execute Allocation"
+                        variant="brand"
+                        onclick={handleExecuteAllocation}
+                        disabled={isProcessing}>
+                    </lightning-button>
+
+                </div>
+
+            </template>
+
+            <template if:false={selectedRequestId}>
+                <div class="slds-text-color_weak slds-m-top_medium">
+                    Select a submitted request to view its allocation lines.
+                </div>
+            </template>
+
+            <!-- Processing Indicator -->
+            <template if:true={isProcessing}>
+                <div class="slds-m-top_medium">
+                    <lightning-spinner
+                        alternative-text="Processing allocation..."
+                        size="medium">
+                    </lightning-spinner>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

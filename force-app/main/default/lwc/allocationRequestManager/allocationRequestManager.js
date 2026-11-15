@@ -66,8 +66,8 @@ export default class AllocationRequestManager extends LightningElement {
         {
             label: 'Quantity Approved',
             fieldName: 'Quantity_Approved__c',
-            type: 'number',
-            editable: true
+            type: 'number'
+           
         },
         {
             type: 'action',
