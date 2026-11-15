@@ -1,0 +1,76 @@
+<template>
+
+    <lightning-card title="Create Stock Level">
+
+        <div class="slds-p-around_medium">
+
+            <lightning-record-edit-form
+                object-api-name="Stock_Level__c"
+                onsuccess={handleSuccess}
+                onerror={handleError}>
+
+                <lightning-messages></lightning-messages>
+
+                <lightning-input-field
+                    field-name="Inventory_Item__c">
+                </lightning-input-field>
+
+                <lightning-input-field
+                    field-name="Warehouse__c">
+                </lightning-input-field>
+
+                <lightning-input-field
+                    field-name="Quantity_on_Hand__c">
+                </lightning-input-field>
+
+                <lightning-input-field
+                    field-name="Quantity_Reserved__c">
+                </lightning-input-field>
+
+                <lightning-input-field
+                    field-name="Reorder_Threshold__c">
+                </lightning-input-field>
+
+                <lightning-button
+                    class="slds-m-top_small"
+                    type="submit"
+                    label="Save"
+                    variant="brand">
+                </lightning-button>
+
+            </lightning-record-edit-form>
+
+        </div>
+
+    </lightning-card>
+
+
+    <lightning-card title="Stock Levels">
+
+        <div class="slds-p-around_medium">
+
+            <template lwc:if={stockLevels}>
+
+                <lightning-datatable
+                    key-field="Id"
+                    data={stockLevels}
+                    columns={columns}
+                    draft-values={draftValues}
+                    onsave={handleSave}
+                    onrowaction={handleRowAction}
+                    hide-checkbox-column>
+                </lightning-datatable>
+
+            </template>
+
+            <template lwc:if={error}>
+                <p class="slds-text-color_error">
+                    Error: {errorMessage}
+                </p>
+            </template>
+
+        </div>
+
+    </lightning-card>
+
+</template>

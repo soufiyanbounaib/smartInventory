@@ -12,7 +12,7 @@ public class InventoryAllocationService {
             quantity = qty;
         }
     }
-
+    @AuraEnabled
     public static void allocateRequest(Id allocationRequestId) {
 
         if (allocationRequestId == null) {

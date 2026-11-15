@@ -1,0 +1,272 @@
+
+.dashboard-container {
+    background: #f4f7fb;
+    min-height: 100vh;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+/* Header */
+
+.dashboard-header {
+    background: linear-gradient(120deg, #142d4e, #245b91);
+    color: white;
+    border-radius: 14px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.header-icon {
+    background: white;
+    border-radius: 12px;
+    padding: 0.8rem;
+}
+
+.header-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    color: #b9d6f4;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.header-subtitle {
+    color: #d8e7f7;
+    font-size: 0.9rem;
+}
+
+
+/* Section headings */
+
+.section-heading {
+    margin-bottom: 1rem;
+}
+
+.section-heading h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #172b4d;
+}
+
+.section-heading p {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+
+/* KPI Cards */
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.3rem;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.metric-card p {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin: 0.8rem 0 0.4rem;
+}
+
+.metric-card h2 {
+    color: #172b4d;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.metric-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.metric-icon.blue {
+    background: #e7f1ff;
+}
+
+.metric-icon.purple {
+    background: #f0eaff;
+}
+
+.metric-icon.orange {
+    background: #fff1df;
+}
+
+.metric-icon.green {
+    background: #e4f7ed;
+}
+
+
+/* Stock Overview */
+
+.stock-overview {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stock-overview-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #245b91;
+    margin-bottom: 1.5rem;
+}
+
+.stock-overview-heading h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #172b4d;
+}
+
+.stock-overview-heading p {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+.stock-position-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stock-position-grid > div {
+    background: #f5f8fc;
+    border-radius: 9px;
+    padding: 1rem;
+}
+
+.stock-position-grid span {
+    display: block;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+.stock-position-grid strong {
+    font-size: 1.4rem;
+    color: #172b4d;
+}
+
+.stock-position-grid .available-value {
+    color: #16834a;
+}
+
+
+/* Workspace */
+
+.modules-section {
+    background: white;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+}
+
+.overview-panel {
+    padding: 1.5rem 0.5rem;
+}
+
+.overview-panel > h2 {
+    color: #172b4d;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.overview-panel > p {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.workflow-item {
+    background: #f5f8fc;
+    border: 1px solid #e6edf5;
+    border-radius: 10px;
+    padding: 1.3rem;
+}
+
+.workflow-item lightning-icon {
+    margin-bottom: 0.8rem;
+    --slds-c-icon-color-foreground-default: #245b91;
+}
+
+.workflow-item h3 {
+    font-weight: 700;
+    color: #172b4d;
+    margin-bottom: 0.5rem;
+}
+
+.workflow-item p {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+
+/* Responsive */
+
+@media screen and (max-width: 900px) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .dashboard-container {
+        padding: 0.75rem;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.3rem;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .metrics-grid,
+    .workflow-grid,
+    .stock-position-grid {
+        grid-template-columns: 1fr;
+    }
+}

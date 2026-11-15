@@ -1,3 +1,325 @@
+
 <template>
-    
+    <div class="dashboard-container">
+
+        <!-- Header -->
+        <div class="dashboard-header">
+
+            <div class="header-content">
+
+                <div class="header-icon">
+                    <lightning-icon
+                        icon-name="standard:product"
+                        size="large"
+                        alternative-text="Inventory">
+                    </lightning-icon>
+                </div>
+
+                <div>
+                    <p class="header-eyebrow">
+                        INVENTORY MANAGEMENT PLATFORM
+                    </p>
+
+                    <h1>Smart Resource Allocation</h1>
+
+                    <p class="header-subtitle">
+                        Manage inventory, monitor warehouse stock
+                        and coordinate resource allocation.
+                    </p>
+                </div>
+
+            </div>
+
+            <lightning-button
+                label="Refresh Dashboard"
+                icon-name="utility:refresh"
+                variant="neutral"
+                onclick={handleRefresh}
+                disabled={isLoading}>
+            </lightning-button>
+
+        </div>
+
+
+        <!-- Dashboard Metrics -->
+        <template if:true={metrics}>
+
+            <div class="section-heading">
+                <h2>Operational Overview</h2>
+                <p>Real-time summary of your inventory operations.</p>
+            </div>
+
+            <div class="metrics-grid">
+
+                <div class="metric-card">
+                    <div class="metric-icon blue">
+                        <lightning-icon
+                            icon-name="utility:package"
+                            size="medium">
+                        </lightning-icon>
+                    </div>
+
+                    <p>Active Inventory Items</p>
+
+                    <h2>
+                        <lightning-formatted-number
+                            value={metrics.activeInventoryItems}>
+                        </lightning-formatted-number>
+                    </h2>
+                </div>
+
+
+                <div class="metric-card">
+                    <div class="metric-icon purple">
+                        <lightning-icon
+                            icon-name="utility:home"
+                            size="medium">
+                        </lightning-icon>
+                    </div>
+
+                    <p>Active Warehouses</p>
+
+                    <h2>
+                        <lightning-formatted-number
+                            value={metrics.activeWarehouses}>
+                        </lightning-formatted-number>
+                    </h2>
+                </div>
+
+
+                <div class="metric-card">
+                    <div class="metric-icon orange">
+                        <lightning-icon
+                            icon-name="utility:orders"
+                            size="medium">
+                        </lightning-icon>
+                    </div>
+
+                    <p>Submitted Requests</p>
+
+                    <h2>
+                        <lightning-formatted-number
+                            value={metrics.submittedRequests}>
+                        </lightning-formatted-number>
+                    </h2>
+                </div>
+
+
+                <div class="metric-card">
+                    <div class="metric-icon green">
+                        <lightning-icon
+                            icon-name="utility:check"
+                            size="medium">
+                        </lightning-icon>
+                    </div>
+
+                    <p>Available Stock Units</p>
+
+                    <h2>
+                        <lightning-formatted-number
+                            value={metrics.totalAvailable}
+                            maximum-fraction-digits="0">
+                        </lightning-formatted-number>
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <!-- Stock Position -->
+            <div class="stock-overview">
+
+                <div class="stock-overview-heading">
+                    <div>
+                        <h2>Stock Position</h2>
+                        <p>Current inventory distribution across warehouses.</p>
+                    </div>
+
+                    <lightning-icon
+                        icon-name="utility:chart"
+                        size="large">
+                    </lightning-icon>
+                </div>
+
+                <div class="stock-position-grid">
+
+                    <div>
+                        <span>Total On Hand</span>
+                        <strong>
+                            <lightning-formatted-number
+                                value={metrics.totalOnHand}
+                                maximum-fraction-digits="0">
+                            </lightning-formatted-number>
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Reserved</span>
+                        <strong>
+                            <lightning-formatted-number
+                                value={metrics.totalReserved}
+                                maximum-fraction-digits="0">
+                            </lightning-formatted-number>
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Available</span>
+                        <strong class="available-value">
+                            <lightning-formatted-number
+                                value={metrics.totalAvailable}
+                                maximum-fraction-digits="0">
+                            </lightning-formatted-number>
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </template>
+
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <lightning-spinner
+                alternative-text="Loading dashboard"
+                size="medium">
+            </lightning-spinner>
+        </template>
+
+
+        <!-- Navigation -->
+        <div class="modules-section">
+
+            <div class="section-heading">
+                <h2>Management Workspace</h2>
+                <p>Access and manage each area of the application.</p>
+            </div>
+
+            <lightning-tabset variant="scoped">
+
+                <lightning-tab
+                    label="Overview"
+                    value="overview">
+
+                    <div class="overview-panel">
+
+                        <h2>Welcome to your inventory workspace</h2>
+
+                        <p>
+                            This platform centralizes inventory
+                            management, warehouse stock monitoring
+                            and resource allocation.
+                        </p>
+
+                        <div class="workflow-grid">
+
+                            <div class="workflow-item">
+                                <lightning-icon
+                                    icon-name="utility:package"
+                                    size="large">
+                                </lightning-icon>
+
+                                <h3>1. Manage Inventory</h3>
+
+                                <p>
+                                    Maintain inventory items and
+                                    product information.
+                                </p>
+                            </div>
+
+                            <div class="workflow-item">
+                                <lightning-icon
+                                    icon-name="utility:home"
+                                    size="large">
+                                </lightning-icon>
+
+                                <h3>2. Monitor Stock</h3>
+
+                                <p>
+                                    Track stock quantities and
+                                    warehouse availability.
+                                </p>
+                            </div>
+
+                            <div class="workflow-item">
+                                <lightning-icon
+                                    icon-name="utility:orders"
+                                    size="large">
+                                </lightning-icon>
+
+                                <h3>3. Submit Requests</h3>
+
+                                <p>
+                                    Create resource requests and
+                                    define required quantities.
+                                </p>
+                            </div>
+
+                            <div class="workflow-item">
+                                <lightning-icon
+                                    icon-name="utility:check"
+                                    size="large">
+                                </lightning-icon>
+
+                                <h3>4. Allocate Resources</h3>
+
+                                <p>
+                                    Allocate available stock across
+                                    multiple warehouses.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </lightning-tab>
+
+
+                <lightning-tab label="Inventory">
+
+                    <c-inventory-item-manager>
+                    </c-inventory-item-manager>
+
+                </lightning-tab>
+
+
+                <lightning-tab label="Warehouses">
+
+                    <c-warehouse-manager>
+                    </c-warehouse-manager>
+
+                </lightning-tab>
+
+
+                <lightning-tab label="Stock Levels">
+
+                    <c-stock-level-manager>
+                    </c-stock-level-manager>
+
+                </lightning-tab>
+
+
+                <lightning-tab label="Requests">
+
+                    <c-allocation-request-manager>
+                    </c-allocation-request-manager>
+
+                </lightning-tab>
+
+
+                <lightning-tab label="Allocation">
+
+                    <c-inventory-item-allocation-manager>
+                    </c-inventory-item-allocation-manager>
+
+                </lightning-tab>
+
+            </lightning-tabset>
+
+        </div>
+
+    </div>
 </template>
