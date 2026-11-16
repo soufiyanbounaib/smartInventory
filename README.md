@@ -193,19 +193,19 @@ Screenshots will be added here to demonstrate the application's user interface a
 ![Dahsboard image](screenshots/dashboard.png)
 
 ### Inventory Management
-<!-- Add inventory management screenshot -->
+![Inventory image](screenshots/inventory-management.png)
 
 ### Warehouse Management
-<!-- Add warehouse management screenshot -->
+![Warehouse image](screenshots/warehouse-management.png)
 
 ### Stock Level Management
-<!-- Add stock level screenshot -->
+![Stocklevel image](screenshots/stock-level-management.png)
 
 ### Allocation Request Management
-<!-- Add allocation request screenshot -->
+![AllocationRequest image](screenshots/allocation-request.png)
 
 ### Stock Allocation
-<!-- Add successful allocation screenshot -->
+![StockAllocation image](screenshots/allocationvalidation.png)
 
 ## Project Objectives
 
