@@ -219,9 +219,6 @@ This project demonstrates practical Salesforce development capabilities, includi
 - Applying Salesforce security best practices.
 - Building a business-oriented Lightning application.
 
-## Author
 
-Developed as an independent Salesforce portfolio project.
 
-**GitHub Repository:**  
-https://github.com/soufiyanbounaib/smartInventory
+
