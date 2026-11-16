@@ -190,7 +190,7 @@ The application was also tested using dedicated Inventory User and Inventory Man
 Screenshots will be added here to demonstrate the application's user interface and main workflows.
 
 ### Dashboard
-<!-- Add dashboard screenshot -->
+![Dahsboard image](screenshots/dashboard.png)
 
 ### Inventory Management
 <!-- Add inventory management screenshot -->
